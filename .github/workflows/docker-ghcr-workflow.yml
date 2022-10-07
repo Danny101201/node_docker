@@ -36,8 +36,10 @@ jobs:
         uses: docker/build-push-action@v2.9.0
         with:
           context: .
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_id }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} # ${{ steps.meta.outputs.tags }}
+          # tags: ghcr.io/houssemdellai/github-actions-course:${{ env.IMAGE_TAG }} # ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0
@@ -49,6 +51,7 @@ jobs:
           KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
       
       - name: Sign the published Docker image
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         run: cosign sign --key cosign.key ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.run_id }}

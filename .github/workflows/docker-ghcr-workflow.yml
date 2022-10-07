@@ -8,7 +8,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: signedcontainer
-  IMAGE_TAG: 1.0.${{ github.run_number }}
+  ACTOR: danny101201
+
 jobs:
   build:
 
@@ -37,9 +38,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} # ${{ steps.meta.outputs.tags }}
-          # tags: ghcr.io/houssemdellai/github-actions-course:${{ env.IMAGE_TAG }} # ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ github.run_id }}
       
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0

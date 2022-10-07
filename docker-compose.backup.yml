@@ -1,0 +1,17 @@
+version: '3'
+
+volumes: 
+  node_volumn: {} 
+
+services:
+ express :
+  build: .
+  container_name: node-app
+  env_file :
+   - .env
+  ports:
+   - 3001:4000
+  volumes:
+   - ${PWD}:/app
+   - node_volumn:/app/node_modules
+  

@@ -1,0 +1,18 @@
+version: '3'
+
+volumes: 
+  node_volumn: {} 
+
+services:
+  node-app :
+    build : 
+      context: .
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ${PWD}:/app
+      - node_volumn:/app/node_modules
+    environment :
+      - NODE_ENV=development
+    command : npm run dev
+    

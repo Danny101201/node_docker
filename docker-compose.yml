@@ -3,20 +3,21 @@ version: '3'
 volumes:
   mongo_db : {}
 services:
+  nginx :
+    image: nginx
+    volumes:
+     - ${PWD}/nginx/default.conf:/etc/nginx/nginx.conf:ro
   node-app :
     build: .
     container_name: node-app
     environment:
       - PORT=4000
+      - SERVERBASEURL=/api/v1
       - MONGO_IP=mongo
       - MONGO_PORT=27017
-      - MONGO_USER=danny101201
-      - MONGO_PASSWORD=Kjhg2365987
       # run mongo server first then run node server
     depends_on:
       - mongo
-    ports:
-      - 4000:4000
   mongo:
     image: mongo:4.4.3-bionic
     restart: always
@@ -25,5 +26,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: danny101201
       MONGO_INITDB_ROOT_PASSWORD: Kjhg2365987
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
   
   

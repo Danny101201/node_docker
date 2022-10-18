@@ -4,6 +4,9 @@ volumes:
   node_volumn: {} 
 
 services:
+  nginx :
+    ports :
+    - 3000:80
   node-app :
     build : 
       context: .
@@ -14,5 +17,7 @@ services:
       - node_volumn:/app/node_modules
     environment :
       - NODE_ENV=development
+      - MONGO_USER=danny101201
+      - MONGO_PASSWORD=Kjhg2365987
+      - SESSION_SECRET=Danny 
     command : npm run dev
-    

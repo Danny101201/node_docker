@@ -6,7 +6,7 @@ export const connectDB = async()=>{
 
   const connect = await mongoose.connect(mongoURL,{
   }).then(()=>{
-    console.log('Connected successfully to server ');
+    console.log('Connected successfully to DB server ');
   }).catch(err=>{
     console.log(err + ' restart db server')
     setTimeout(connectDB,5000)

@@ -1,5 +1,5 @@
 dev:
-	docker compose  -f docker-compose.dev.yml -f docker-compose.yml up -V 
+	docker compose  -f docker-compose.dev.yml -f docker-compose.yml up -V
 prod:
 	docker compose  -f docker-compose.prod.yml -f docker-compose.yml up --build
 node_app:

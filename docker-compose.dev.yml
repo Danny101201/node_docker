@@ -21,3 +21,4 @@ services:
       - MONGO_PASSWORD=Kjhg2365987
       - SESSION_SECRET=Danny 
     command : npm run dev
+

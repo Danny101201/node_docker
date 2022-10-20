@@ -15,6 +15,9 @@ services:
       - SERVERBASEURL=/api/v1
       - MONGO_IP=mongo
       - MONGO_PORT=27017
+      - MONGO_USER=danny101201
+      - MONGO_PASSWORD=Kjhg2365987
+      - SESSION_SECRET=Danny 
       # run mongo server first then run node server
     depends_on:
       - mongo

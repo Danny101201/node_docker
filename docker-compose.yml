@@ -9,6 +9,7 @@ services:
      - ${PWD}/nginx/default.conf:/etc/nginx/nginx.conf:ro
   node-app :
     build: .
+    image: 0963802367/node-app
     container_name: node-app
     environment:
       - PORT=4000

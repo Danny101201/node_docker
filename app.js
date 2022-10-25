@@ -53,7 +53,8 @@ app.use(
   })
 )
 app.get(`${host}`, (req, res) => {
-  res.sendFile(path.join(__dirname,'index.html'))
+  // res.sendFile(path.join(__dirname,'index.html'))
+  res.send("<h2>Hi there !!!</h2>")
 
   console.log('yeah it run')
 })

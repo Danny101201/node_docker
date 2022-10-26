@@ -13,6 +13,9 @@ node_app:
 push_node_app:
 # push node-app with docker hub
 	docker compose  -f docker-compose.dev.yml -f docker-compose.yml push node-app 
+build_node_app:
+# push node-app with docker hub
+	docker compose  -f docker-compose.dev.yml -f docker-compose.yml build node-app 
 mongo:
 	docker compose  -f docker-compose.dev.yml -f docker-compose.yml up -d mongo
 proxy_manager:

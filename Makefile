@@ -22,4 +22,4 @@ proxy_manager:
 	docker compose  -f docker-compose.proxy.yml up -d 
 
 watchtower :
-	docker run  -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower  -e WATCHTOWER_DEBUG==true -e WATCHTOWER_TRACE=true  --run-once node-app
+	docker run  -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower  -e WATCHTOWER_DEBUG==true -e WATCHTOWER_TRACE=true  node-app
